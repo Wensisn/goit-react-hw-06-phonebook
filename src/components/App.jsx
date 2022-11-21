@@ -1,16 +1,16 @@
+import { ContactsList } from './Contacts/Contacts';
+import { ContactForm } from './ContactForm/ContactForm';
+import { StatusFilter } from './StatusFilter/StatusFilter';
+import { getVisibleContacts } from 'redux/selectors';
+import { useSelector } from 'react-redux';
+
 export const App = () => {
+  const contacts = useSelector(getVisibleContacts);
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
+    <div>
+      <ContactForm />
+      <StatusFilter />
+      {contacts > 0 && <ContactsList />}
     </div>
   );
 };
