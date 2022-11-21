@@ -15,16 +15,6 @@ export const LoginForm = () => {
   const nameInputId = nanoid();
   const numberInputId = nanoid();
 
-  // const onChangeInpetName = e => {
-  //   setName(e.currentTarget.value);
-  //   console.log(e.currentTarget.value);
-  // };
-
-  // const onChangeInpetNumber = e => {
-  //   setNumber(e.currentTarget.value);
-  //   console.log(e.currentTarget.value);
-  // };
-
   const isExistContact = name => {
     return contacts.some(item => item.name === name);
   };

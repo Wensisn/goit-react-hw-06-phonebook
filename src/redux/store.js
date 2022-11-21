@@ -14,7 +14,7 @@ import {
 export const store = configureStore({
   reducer: {
     contacts: contactReducer,
-    filters: filtersReducer,
+    filter: filtersReducer,
   },
   middleware(getDefaultMiddleware) {
     return getDefaultMiddleware({

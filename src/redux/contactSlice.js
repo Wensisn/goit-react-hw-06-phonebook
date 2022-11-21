@@ -1,33 +1,11 @@
-import { createSlice, nanoid } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
+import { nanoid } from 'nanoid';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage'; // defaults to localStorage for we
 
-const tasksInitialState = [
-  // {
-  //   id: nanoid(1),
-  //   name: 'Rosie Simpson',
-  //   number: '4591156',
-  // },
-  // {
-  //   id: nanoid(1),
-  //   name: 'Hermione Kline',
-  //   number: '4591256',
-  // },
-  // {
-  //   id: nanoid(1),
-  //   name: 'Eden Clements',
-  //   number: '4591356',
-  // },
-  // {
-  //   id: nanoid(1),
-  //   name: 'Annie Copeland',
-  //   number: '4591456',
-  // },
-];
-
 const contactSlice = createSlice({
   name: 'contacts',
-  initialState: tasksInitialState,
+  initialState: [],
   reducers: {
     addContact: {
       reducer(state, action) {
@@ -36,7 +14,7 @@ const contactSlice = createSlice({
       prepare({ name, number }) {
         return {
           payload: {
-            id: nanoid(1),
+            id: nanoid(),
             name,
             number,
           },
@@ -52,8 +30,9 @@ const contactSlice = createSlice({
 export const { addContact, deleteContact } = contactSlice.actions;
 
 const persistConfig = {
-  key: 'items',
+  key: 'root',
   storage,
+  blacklist: ['filter'],
 };
 
 const contactReducer = persistReducer(persistConfig, contactSlice.reducer);
