@@ -1,11 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { deleteContact } from 'redux/contactSlice';
-import {
-  TodoItem,
-  TodoText,
-  TodoButton,
-  TodoBoxs,
-} from './Contacts/Contacts.styled';
+import { TodoItem, TodoText, TodoButton } from './Contacts/Contacts.styled';
 
 export const ContactItem = ({ id, name, number }) => {
   const dispatch = useDispatch();
