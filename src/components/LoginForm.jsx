@@ -2,7 +2,15 @@ import { useState } from 'react';
 import { nanoid } from 'nanoid';
 import { useDispatch } from 'react-redux';
 import { addContact } from 'redux/contactSlice';
-import css from './ContactForm/Form.module.css';
+import {
+  SectionForm,
+  Form,
+  Label,
+  Input,
+  Name,
+  Click,
+  Text,
+} from './ContactForm/Form.styled';
 
 export const LoginForm = () => {
   const [name, setName] = useState('');
@@ -25,14 +33,13 @@ export const LoginForm = () => {
   };
 
   return (
-    <div className={css.sectionForm}>
-      <h2>PhoneBook</h2>
+    <SectionForm>
+      <Text>PhoneBook</Text>
 
-      <form className={css.form} onSubmit={handleFormSubmit}>
-        <label className={css.label} htmlFor={nameInputId}>
-          <span className={css.name}>Name</span>
-          <input
-            className={css.input}
+      <Form onSubmit={handleFormSubmit}>
+        <Label htmlFor={nameInputId}>
+          <Name>Name</Name>
+          <Input
             type="text"
             name="name"
             required
@@ -40,11 +47,10 @@ export const LoginForm = () => {
             id={nameInputId}
             onChange={e => setName(e.currentTarget.value)}
           />
-        </label>
-        <label className={css.label} htmlFor={numberInputId}>
-          <span className={css.name}>Number</span>
-          <input
-            className={css.input}
+        </Label>
+        <Label htmlFor={numberInputId}>
+          <Name>Number</Name>
+          <Input
             type="tel"
             name="number"
             required
@@ -54,11 +60,9 @@ export const LoginForm = () => {
             id={numberInputId}
             onChange={e => setNumber(e.currentTarget.value)}
           />
-        </label>
-        <button type="submit" className={css.click}>
-          Add a contact
-        </button>
-      </form>
-    </div>
+        </Label>
+        <Click type="submit">Add a contact</Click>
+      </Form>
+    </SectionForm>
   );
 };

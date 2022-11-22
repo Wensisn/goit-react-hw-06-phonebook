@@ -7,10 +7,10 @@ import { useSelector } from 'react-redux';
 export const App = () => {
   const contacts = useSelector(getContacts);
   return (
-    <div>
+    <>
       <ContactForm />
       {contacts.length > 0 && <ContactsFilter />}
       <ContactsList />
-    </div>
+    </>
   );
 };
