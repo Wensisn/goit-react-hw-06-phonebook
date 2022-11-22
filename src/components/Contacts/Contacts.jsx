@@ -1,24 +1,27 @@
 import css from './Contacts.module.css';
-import React from 'react';
-import { useDispatch } from 'react-redux';
-import { deleteContact } from 'redux/contactSlice';
+import { useSelector } from 'react-redux';
+import { ContactItem } from 'components/ContactItem';
+import { getContacts, getFilter } from 'redux/selectors';
 
-export const ContactsList = ({ id, name, number }) => {
-  const dispatch = useDispatch();
+export const ContactsList = () => {
+  const contacts = useSelector(getContacts);
+  const filter = useSelector(getFilter);
+
+  const getVisibleContacts = contacts.filter(contact =>
+    contact.name.toLowerCase().includes(filter.toLowerCase())
+  );
 
   return (
     <>
       <ul className={css.todoList}>
-        <li key={id} className={css.todoList__item}>
-          <p className={css.todoList__text}>{name}</p>
-          <p className={css.todoList__text}>{number}</p>
-          <button
-            className={css.todoList__button}
-            onClick={() => dispatch(deleteContact())}
-          >
-            Remove
-          </button>
-        </li>
+        {getVisibleContacts.map(contact => (
+          <ContactItem
+            key={contact.id}
+            id={contact.id}
+            name={contact.name}
+            number={contact.number}
+          />
+        ))}
       </ul>
     </>
   );
